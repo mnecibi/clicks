@@ -52,6 +52,17 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
+config :libcluster,
+  topologies: [
+    k8s_example: [
+      strategy: Elixir.Cluster.Strategy.Kubernetes.DNS,
+      config: [
+        service: "cluster-test-headless",
+        application_name: "cluster-test"
+      ]
+    ]
+  ]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
