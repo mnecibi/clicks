@@ -7,6 +7,8 @@ defmodule ClusterTest.Application do
 
   @impl true
   def start(_type, _args) do
+    topologies = Application.get_env(:libcluster, :topologies) || []
+
     children = [
       ClusterTestWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:cluster_test, :dns_cluster_query) || :ignore},
@@ -16,7 +18,8 @@ defmodule ClusterTest.Application do
       # Start a worker by calling: ClusterTest.Worker.start_link(arg)
       # {ClusterTest.Worker, arg},
       # Start to serve requests, typically the last entry
-      ClusterTestWeb.Endpoint
+      ClusterTestWeb.Endpoint,
+      {Cluster.Supervisor, [topologies, [name: ClusterTest.ClusterSupervisor]]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
