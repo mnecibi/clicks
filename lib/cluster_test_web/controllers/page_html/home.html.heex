@@ -1,7 +1,8 @@
 <.flash_group flash={@flash} />
-
-<h2>My Cluster</h2>
-<div>
-  <div>Current node: <%= node() %></div>
-  <div>Other nodes: <%= Node.list() %></div>
+<div class="p-5">
+  <h2 class="font-medium text-lg">My Cluster</h2>
+  <div>
+    <div>Current node: <%= node() %></div>
+    <div>Other nodes: <%= Node.list() %></div>
+  </div>
 </div>
