@@ -3,6 +3,6 @@
   <h2 class="font-medium text-lg">My Cluster</h2>
   <div>
     <div>Current node: <%= node() %></div>
-    <div>Other nodes: <%= Node.list() %></div>
+    <div>Other nodes: <%= "[#{Enum.join(Node.list(), ",")}]" %></div>
   </div>
 </div>
