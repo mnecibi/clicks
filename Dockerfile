@@ -12,6 +12,7 @@ WORKDIR /build
 COPY lib ./lib
 COPY config ./config
 COPY assets ./assets
+COPY rel ./rel
 COPY mix.exs .
 COPY mix.lock .
 
