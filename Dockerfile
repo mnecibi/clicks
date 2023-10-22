@@ -19,15 +19,14 @@ ENV MIX_ENV=prod \
 RUN mix deps.get --only prod
 
 # Compile assets
+COPY lib lib
+COPY priv priv
+COPY assets assets
 COPY config config
 RUN mix compile
 RUN mix setup
 
-COPY lib lib
-COPY priv priv
-COPY assets assets
 COPY rel rel
-
 RUN mix release
 
 #=================
