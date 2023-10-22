@@ -9,12 +9,8 @@ RUN mix local.hex --force
 RUN mix local.rebar --force
 
 WORKDIR /build
-COPY lib ./lib
-COPY config ./config
-COPY assets ./assets
-COPY rel ./rel
-COPY mix.exs .
-COPY mix.lock .
+
+COPY mix.exs mix.lock ./
 
 ENV MIX_ENV=prod \
     LANG=C.UTF-8
@@ -25,6 +21,12 @@ RUN mix deps.get --only prod
 # Compile assets
 RUN mix compile
 RUN mix setup
+
+COPY lib lib
+COPY priv priv
+COPY config config
+COPY assets assets
+COPY rel rel
 RUN mix release
 
 #=================
