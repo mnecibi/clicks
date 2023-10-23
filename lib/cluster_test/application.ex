@@ -18,6 +18,7 @@ defmodule ClusterTest.Application do
       # Start a worker by calling: ClusterTest.Worker.start_link(arg)
       # {ClusterTest.Worker, arg},
       # Start to serve requests, typically the last entry
+      ClusterTestWeb.Presence,
       ClusterTestWeb.Endpoint,
       {Cluster.Supervisor, [topologies, [name: ClusterTest.ClusterSupervisor]]}
     ]

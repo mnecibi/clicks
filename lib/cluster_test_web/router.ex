@@ -17,7 +17,9 @@ defmodule ClusterTestWeb.Router do
   scope "/", ClusterTestWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", PageController, :index
+
+    live "/cursors", CursorPositionsLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
