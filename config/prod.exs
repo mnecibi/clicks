@@ -20,7 +20,7 @@ config :libcluster,
       strategy: Elixir.Cluster.Strategy.Kubernetes.DNS,
       config: [
         service: "cluster-test-headless",
-        application_name: "cluster-test"
+        application_name: "cluster_test"
       ]
     ]
   ]
