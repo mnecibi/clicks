@@ -39,7 +39,7 @@ if config_env() == :prod do
   config :cluster_test, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :cluster_test, ClusterTestWeb.Endpoint,
-    url: [host: host, port: 80],
+    url: [host: host, port: 443, scheme: "https"],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
@@ -48,7 +48,7 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
-    check_origin: ["https://cluster_test.necibi.com", "http://cluster_test.necibi.com"],
+    check_origin: ["https://cluster-test.necibi.com"],
     secret_key_base: secret_key_base
 
   # ## SSL Support
