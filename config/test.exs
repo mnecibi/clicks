@@ -2,13 +2,13 @@ import Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :cluster_test, ClusterTestWeb.Endpoint,
+config :clicks, ClicksWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "I28r5Q7Bb5OVZMiTvpnEGnxP6yFWteH4Rx02rqXA1w45RhaOWnNQPx/KjwfWFHRK",
   server: false
 
 # In test we don't send emails.
-config :cluster_test, ClusterTest.Mailer, adapter: Swoosh.Adapters.Test
+config :clicks, Clicks.Mailer, adapter: Swoosh.Adapters.Test
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false

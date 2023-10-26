@@ -1,4 +1,4 @@
-# ClusterTest
+# Clicks
 
 To start your Phoenix server:
 

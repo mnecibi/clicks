@@ -1,7 +1,7 @@
-defmodule ClusterTest.CursorFixtures do
+defmodule Clicks.CursorFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `ClusterTest.Cursor` context.
+  entities via the `Clicks.Cursor` context.
   """
 
   @doc """
@@ -14,7 +14,7 @@ defmodule ClusterTest.CursorFixtures do
         x: 42,
         y: 42
       })
-      |> ClusterTest.Cursor.create_cursor_positions()
+      |> Clicks.Cursor.create_cursor_positions()
 
     cursor_positions
   end

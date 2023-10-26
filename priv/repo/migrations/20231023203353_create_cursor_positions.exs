@@ -1,4 +1,4 @@
-defmodule ClusterTest.Repo.Migrations.CreateCursorPositions do
+defmodule Clicks.Repo.Migrations.CreateCursorPositions do
   use Ecto.Migration
 
   def change do

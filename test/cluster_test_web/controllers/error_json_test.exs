@@ -1,12 +1,12 @@
-defmodule ClusterTestWeb.ErrorJSONTest do
-  use ClusterTestWeb.ConnCase, async: true
+defmodule ClicksWeb.ErrorJSONTest do
+  use ClicksWeb.ConnCase, async: true
 
   test "renders 404" do
-    assert ClusterTestWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
+    assert ClicksWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
   end
 
   test "renders 500" do
-    assert ClusterTestWeb.ErrorJSON.render("500.json", %{}) ==
+    assert ClicksWeb.ErrorJSON.render("500.json", %{}) ==
              %{errors: %{detail: "Internal Server Error"}}
   end
 end

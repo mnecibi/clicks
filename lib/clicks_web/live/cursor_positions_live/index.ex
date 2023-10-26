@@ -1,13 +1,13 @@
-defmodule ClusterTestWeb.CursorPositionsLive.Index do
-  alias ClusterTestWeb.Presence
+defmodule ClicksWeb.CursorPositionsLive.Index do
+  alias ClicksWeb.Presence
 
-  use ClusterTestWeb, :live_view
+  use ClicksWeb, :live_view
 
-  @clustertest "clustertest"
+  @clicks_cluster "clicks"
 
   @impl true
   def mount(_params, %{"user" => user}, socket) do
-    Presence.track(self(), @clustertest, socket.id, %{
+    Presence.track(self(), @clicks_cluster, socket.id, %{
       socket_id: socket.id,
       x: 50,
       y: 50,
@@ -15,10 +15,10 @@ defmodule ClusterTestWeb.CursorPositionsLive.Index do
       score: 0
     })
 
-    ClusterTestWeb.Endpoint.subscribe(@clustertest)
+    ClicksWeb.Endpoint.subscribe(@clicks_cluster)
 
     initial_users =
-      Presence.list(@clustertest)
+      Presence.list(@clicks_cluster)
       |> Enum.map(fn {_, data} -> data[:metas] |> List.first() end)
 
     updated =
@@ -33,21 +33,21 @@ defmodule ClusterTestWeb.CursorPositionsLive.Index do
   @impl true
   def handle_event("cursor-move", %{"x" => x, "y" => y}, socket) do
     metas =
-      Presence.get_by_key(@clustertest, socket.id)[:metas]
+      Presence.get_by_key(@clicks_cluster, socket.id)[:metas]
       |> List.first()
       |> Map.merge(%{x: x, y: y})
 
-    Presence.update(self(), @clustertest, socket.id, metas)
+    Presence.update(self(), @clicks_cluster, socket.id, metas)
 
     {:noreply, socket}
   end
 
   def handle_event("click", _params, socket) do
     metas =
-      Presence.get_by_key(@clustertest, socket.id)[:metas]
+      Presence.get_by_key(@clicks_cluster, socket.id)[:metas]
       |> List.first()
 
-    Presence.update(self(), @clustertest, socket.id, %{metas | score: metas.score + 1})
+    Presence.update(self(), @clicks_cluster, socket.id, %{metas | score: metas.score + 1})
 
     {:noreply, socket}
   end
@@ -55,7 +55,7 @@ defmodule ClusterTestWeb.CursorPositionsLive.Index do
   @impl true
   def handle_info(%{event: "presence_diff", payload: _payload}, socket) do
     users =
-      Presence.list(@clustertest)
+      Presence.list(@clicks_cluster)
       |> Enum.map(fn {_, data} -> data[:metas] |> List.first() end)
 
     updated =
@@ -79,7 +79,7 @@ defmodule ClusterTestWeb.CursorPositionsLive.Index do
         <div class="text-xl font-bold">LEADERBOARD</div>
         <div class="flex flex-col gap-2 items-center text-lg">
           <%= for {user, index} <- Enum.sort(@users, &(&1.score >= &2.score)) |> Enum.with_index() do %>
-            <% color = ClusterTestWeb.Colors.getHSL(user.name) %>
+            <% color = ClicksWeb.Colors.getHSL(user.name) %>
             <div style={"color: #{color};"}>
               <%= "#{index + 1} - #{user.name}: #{user.score}" %>
             </div>
@@ -89,7 +89,7 @@ defmodule ClusterTestWeb.CursorPositionsLive.Index do
 
       <ul class="list-none" id="cursors" phx-hook="TrackClientCursor">
         <%= for user <- @users do %>
-          <% color = ClusterTestWeb.Colors.getHSL(user.name) %>
+          <% color = ClicksWeb.Colors.getHSL(user.name) %>
           <li
             style={"color: #{color}; left: #{user.x}%; top: #{user.y}%"}
             class="flex flex-col absolute pointer-events-none whitespace-nowrap overflow-hidden"

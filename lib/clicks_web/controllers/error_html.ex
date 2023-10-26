@@ -1,12 +1,12 @@
-defmodule ClusterTestWeb.ErrorHTML do
-  use ClusterTestWeb, :html
+defmodule ClicksWeb.ErrorHTML do
+  use ClicksWeb, :html
 
   # If you want to customize your error pages,
   # uncomment the embed_templates/1 call below
   # and add pages to the error directory:
   #
-  #   * lib/cluster_test_web/controllers/error_html/404.html.heex
-  #   * lib/cluster_test_web/controllers/error_html/500.html.heex
+  #   * lib/clicks_web/controllers/error_html/404.html.heex
+  #   * lib/clicks_web/controllers/error_html/500.html.heex
   #
   # embed_templates "error_html/*"
 

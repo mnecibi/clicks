@@ -1,5 +1,5 @@
-defmodule ClusterTestWeb.PageControllerTest do
-  use ClusterTestWeb.ConnCase
+defmodule ClicksWeb.PageControllerTest do
+  use ClicksWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

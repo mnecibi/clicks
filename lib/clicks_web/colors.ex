@@ -1,4 +1,4 @@
-defmodule ClusterTestWeb.Colors do
+defmodule ClicksWeb.Colors do
   def getHSL(s) do
     hue = to_charlist(s) |> Enum.sum() |> rem(360)
     "hsl(#{hue}, 70%, 40%)"

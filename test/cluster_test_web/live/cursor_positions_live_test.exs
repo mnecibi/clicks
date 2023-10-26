@@ -1,8 +1,8 @@
-defmodule ClusterTestWeb.CursorPositionsLiveTest do
-  use ClusterTestWeb.ConnCase
+defmodule ClicksWeb.CursorPositionsLiveTest do
+  use ClicksWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import ClusterTest.CursorFixtures
+  import Clicks.CursorFixtures
 
   @create_attrs %{y: 42, x: 42}
   @update_attrs %{y: 43, x: 43}
@@ -47,7 +47,9 @@ defmodule ClusterTestWeb.CursorPositionsLiveTest do
     test "updates cursor_positions in listing", %{conn: conn, cursor_positions: cursor_positions} do
       {:ok, index_live, _html} = live(conn, ~p"/cursor_positions")
 
-      assert index_live |> element("#cursor_positions-#{cursor_positions.id} a", "Edit") |> render_click() =~
+      assert index_live
+             |> element("#cursor_positions-#{cursor_positions.id} a", "Edit")
+             |> render_click() =~
                "Edit Cursor positions"
 
       assert_patch(index_live, ~p"/cursor_positions/#{cursor_positions}/edit")
@@ -69,7 +71,10 @@ defmodule ClusterTestWeb.CursorPositionsLiveTest do
     test "deletes cursor_positions in listing", %{conn: conn, cursor_positions: cursor_positions} do
       {:ok, index_live, _html} = live(conn, ~p"/cursor_positions")
 
-      assert index_live |> element("#cursor_positions-#{cursor_positions.id} a", "Delete") |> render_click()
+      assert index_live
+             |> element("#cursor_positions-#{cursor_positions.id} a", "Delete")
+             |> render_click()
+
       refute has_element?(index_live, "#cursor_positions-#{cursor_positions.id}")
     end
   end
@@ -83,7 +88,10 @@ defmodule ClusterTestWeb.CursorPositionsLiveTest do
       assert html =~ "Show Cursor positions"
     end
 
-    test "updates cursor_positions within modal", %{conn: conn, cursor_positions: cursor_positions} do
+    test "updates cursor_positions within modal", %{
+      conn: conn,
+      cursor_positions: cursor_positions
+    } do
       {:ok, show_live, _html} = live(conn, ~p"/cursor_positions/#{cursor_positions}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~

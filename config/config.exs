@@ -7,18 +7,18 @@
 # General application configuration
 import Config
 
-config :cluster_test,
+config :clicks,
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :cluster_test, ClusterTestWeb.Endpoint,
+config :clicks, ClicksWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [html: ClusterTestWeb.ErrorHTML, json: ClusterTestWeb.ErrorJSON],
+    formats: [html: ClicksWeb.ErrorHTML, json: ClicksWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: ClusterTest.PubSub,
+  pubsub_server: Clicks.PubSub,
   live_view: [signing_salt: "uSW82Gd8"]
 
 # Configures the mailer
@@ -28,7 +28,7 @@ config :cluster_test, ClusterTestWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :cluster_test, ClusterTest.Mailer, adapter: Swoosh.Adapters.Local
+config :clicks, Clicks.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,

@@ -1,4 +1,4 @@
-defmodule ClusterTest.Application do
+defmodule Clicks.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -10,22 +10,22 @@ defmodule ClusterTest.Application do
     topologies = Application.get_env(:libcluster, :topologies) || []
 
     children = [
-      ClusterTestWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:cluster_test, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: ClusterTest.PubSub},
+      ClicksWeb.Telemetry,
+      {DNSCluster, query: Application.get_env(:clicks, :dns_cluster_query) || :ignore},
+      {Phoenix.PubSub, name: Clicks.PubSub},
       # Start the Finch HTTP client for sending emails
-      {Finch, name: ClusterTest.Finch},
-      # Start a worker by calling: ClusterTest.Worker.start_link(arg)
-      # {ClusterTest.Worker, arg},
+      {Finch, name: Clicks.Finch},
+      # Start a worker by calling: Clicks.Worker.start_link(arg)
+      # {Clicks.Worker, arg},
       # Start to serve requests, typically the last entry
-      ClusterTestWeb.Presence,
-      ClusterTestWeb.Endpoint,
-      {Cluster.Supervisor, [topologies, [name: ClusterTest.ClusterSupervisor]]}
+      ClicksWeb.Presence,
+      ClicksWeb.Endpoint,
+      {Cluster.Supervisor, [topologies, [name: Clicks.ClusterSupervisor]]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: ClusterTest.Supervisor]
+    opts = [strategy: :one_for_one, name: Clicks.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -33,7 +33,7 @@ defmodule ClusterTest.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    ClusterTestWeb.Endpoint.config_change(changed, removed)
+    ClicksWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

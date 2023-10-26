@@ -1,6 +1,6 @@
-defmodule ClusterTest do
+defmodule Clicks do
   @moduledoc """
-  ClusterTest keeps the contexts that define your domain
+  Clicks keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

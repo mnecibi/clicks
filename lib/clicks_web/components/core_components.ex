@@ -1,4 +1,4 @@
-defmodule ClusterTestWeb.CoreComponents do
+defmodule ClicksWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -17,7 +17,7 @@ defmodule ClusterTestWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import ClusterTestWeb.Gettext
+  import ClicksWeb.Gettext
 
   @doc """
   Renders a modal.
@@ -659,9 +659,9 @@ defmodule ClusterTestWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(ClusterTestWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(ClicksWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(ClusterTestWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(ClicksWeb.Gettext, "errors", msg, opts)
     end
   end
 

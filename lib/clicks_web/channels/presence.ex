@@ -1,4 +1,4 @@
-defmodule ClusterTestWeb.Presence do
+defmodule ClicksWeb.Presence do
   @moduledoc """
   Provides presence tracking to channels and processes.
 
@@ -6,6 +6,6 @@ defmodule ClusterTestWeb.Presence do
   docs for more details.
   """
   use Phoenix.Presence,
-    otp_app: :cluster_test,
-    pubsub_server: ClusterTest.PubSub
+    otp_app: :clicks,
+    pubsub_server: Clicks.PubSub
 end

@@ -1,5 +1,5 @@
-defmodule ClusterTestWeb.PageController do
-  use ClusterTestWeb, :controller
+defmodule ClicksWeb.PageController do
+  use ClicksWeb, :controller
 
   def index(conn, _params) do
     session = conn |> get_session()
@@ -11,7 +11,7 @@ defmodule ClusterTestWeb.PageController do
 
       _ ->
         conn
-        |> put_session(:user, ClusterTestWeb.Names.generate())
+        |> put_session(:user, ClicksWeb.Names.generate())
         |> configure_session(renew: true)
         |> redirect(to: "/cursors")
     end

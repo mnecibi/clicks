@@ -1,4 +1,4 @@
-defmodule ClusterTestWeb.Names do
+defmodule ClicksWeb.Names do
   def generate do
     title = ~w(Sir Sr Prof Saint Ibn Lady Madam Mistress Herr Dr) |> Enum.random()
 

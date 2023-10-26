@@ -1,4 +1,4 @@
-defmodule ClusterTestWeb.Telemetry do
+defmodule ClicksWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -63,7 +63,7 @@ defmodule ClusterTestWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {ClusterTestWeb, :count_users, []}
+      # {ClicksWeb, :count_users, []}
     ]
   end
 end
