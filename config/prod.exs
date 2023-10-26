@@ -14,17 +14,6 @@ config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: ClusterTest.Finc
 # Disable Swoosh Local Memory Storage
 config :swoosh, local: false
 
-config :libcluster,
-  topologies: [
-    k8s_example: [
-      strategy: Elixir.Cluster.Strategy.Kubernetes.DNS,
-      config: [
-        service: "cluster-test-headless",
-        application_name: "cluster_test"
-      ]
-    ]
-  ]
-
 # Do not print debug messages in production
 config :logger, level: :info
 

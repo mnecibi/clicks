@@ -51,6 +51,17 @@ if config_env() == :prod do
     check_origin: ["https://#{host}"],
     secret_key_base: secret_key_base
 
+  config :libcluster,
+    topologies: [
+      k8s_example: [
+        strategy: Elixir.Cluster.Strategy.Kubernetes.DNS,
+        config: [
+          service: System.get_env("HEADLESS_SERVICE"),
+          application_name: System.get_env("APP_NAME")
+        ]
+      ]
+    ]
+
   # ## SSL Support
   #
   # To get SSL working, you will need to add the `https` key
